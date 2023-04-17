@@ -63,14 +63,22 @@ class DonorController extends Controller
    */
   public function edit(Donor $donor)
   {
-    //
+    $roles = $this->roleService->onlyDonor()->first();
+    $bloodTypes = $this->bloodTypeService->orderByType()->get();
+    return view('donors.edit', compact('roles', 'bloodTypes', 'donor'));
   }
 
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Donor $donor)
+  public function update(DonorRequest $request, Donor $donor)
   {
-    //
+    if ($request->roles === Constant::DONOR) :
+      $this->userService->updateDonor($donor, $request);
+    else :
+      abort(500, 'Internal Server Error, Silahkan hubungin admin');
+    endif;
+
+    return redirect()->route('users.index')->withSuccess(trans('session.create'));
   }
 }

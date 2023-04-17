@@ -26,15 +26,15 @@ class DonorRequest extends FormRequest
       'name' => 'required|string|max:50',
       'email' => [
         'required', 'email:dns',
-        Rule::unique('users', 'email'),
+        Rule::unique('users', 'email')->ignore($this->donor->user_id),
       ],
       'phone' => [
         'required', 'numeric', 'min:12',
-        Rule::unique('users', 'phone'),
+        Rule::unique('users', 'phone')->ignore($this->donor->user_id),
       ],
       'nik' => [
         'required', 'numeric', 'min:12',
-        Rule::unique('donors', 'nik'),
+        Rule::unique('donors', 'nik')->ignore($this->donor),
       ],
       'blood_type_id' => 'required|numeric',
       'birth_date' => 'required|date',

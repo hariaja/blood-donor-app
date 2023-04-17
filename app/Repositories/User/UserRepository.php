@@ -7,4 +7,5 @@ use LaravelEasyRepository\Repository;
 interface UserRepository extends Repository
 {
   public function excludeAdmin();
+  public function changeStatus(int $id);
 }

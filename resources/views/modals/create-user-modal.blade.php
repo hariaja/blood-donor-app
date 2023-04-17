@@ -11,13 +11,13 @@
           </div>
         </div>
         <div class="block-content fs-sm">
-          <p class="text-center">Silahkan pilih tipe pengguna yang ingin anda tambahkan</p>
+          <p class="text-center fw-semibold">{{ trans('Silahkan pilih tipe pengguna yang ingin anda tambahkan') }}</p>
           <div class="text-center mb-4">
             <a href="{{ route('donors.create') }}" class="btn btn-info btn-hero me-1 mb-3">
               <i class="fa fa-fw fa-users me-1"></i>
               {{ Constant::DONOR }}
             </a>
-            <a href="{{ route('users.create') }}" class="btn btn-warning btn-hero me-1 mb-3">
+            <a href="{{ route('users.create') }}" class="btn btn-success btn-hero me-1 mb-3">
               <i class="fas fa-fw fa-clipboard-user me-1"></i>
               {{ Constant::OFFICER }}
             </a>

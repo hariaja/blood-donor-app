@@ -17,7 +17,7 @@
       </h3>
       <div class="block-options">
         @canany(['users.create', 'donors.create'])
-          <button type="button" class="btn btn-sm btn-primary push" data-bs-toggle="modal" data-bs-target="#modal-block-popin">
+          <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-block-popin">
             <i class="fa fa-plus fa-xs me-1"></i>
             {{ trans('page.button.create') }}
           </button>

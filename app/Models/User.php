@@ -63,7 +63,7 @@ class User extends Authenticatable implements MustVerifyEmail
    * Get the user avatar.
    *
    */
-  public function getDefaultAvatar()
+  public function getAvatar()
   {
     if (!$this->avatar) {
       return asset('assets/images/default.png');

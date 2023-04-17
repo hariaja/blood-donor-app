@@ -7,6 +7,8 @@ use Exception;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 use App\Helpers\Global\Helper;
+use App\Models\Donor;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use LaravelEasyRepository\Service;
 use Illuminate\Support\Facades\Log;
@@ -144,5 +146,116 @@ class UserServiceImplement extends Service implements UserService
     }
     DB::commit();
     return $user;
+  }
+
+  public function updateOfficer(User $user, Request $request)
+  {
+    DB::beginTransaction();
+    try {
+
+      // Handle upload image.
+      if ($request->file('avatar')) :
+        if ($request->old_avatar) :
+          Storage::delete($user->avatar);
+        endif;
+        $avatar = Storage::putFile('public/images/officers', $request->file('avatar'));
+      else :
+        $avatar = $request->old_avatar;
+      endif;
+
+      // Get validated request.
+      $validation = $request->validated();
+      $validation['avatar'] = $avatar;
+
+      // Create user & sync user.
+      $user = $this->mainRepository->update($user->id, $validation);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $user;
+  }
+
+  public function updateDonor(Donor $donor, Request $request)
+  {
+    DB::beginTransaction();
+    try {
+
+      // Handle upload image.
+      if ($request->file('avatar')) :
+        if ($request->old_avatar) :
+          Storage::delete($donor->user->avatar);
+        endif;
+        $avatar = Storage::putFile('public/images/donors', $request->file('avatar'));
+      else :
+        $avatar = $request->old_avatar;
+      endif;
+
+      // Get age.
+      $age = Helper::convertToAge($request->birth_date);
+
+      // Get validated request.
+      $validation = $request->validated();
+      $validation['avatar'] = $avatar;
+
+      // Update user
+      $user = $this->mainRepository->findOrFail($donor->user_id);
+      $user->update($validation);
+
+      $data = array();
+      $data['age'] = $age;
+      $data['nik'] = $request->nik;
+      $data['blood_type_id'] = $request->blood_type_id;
+      $data['gender'] = $request->gender;
+      $data['birth_date'] = $request->birth_date;
+      $data['job_title'] = $request->job_title;
+      $data['address'] = $request->address;
+
+      // Create user & sync user.
+      $donor = $this->donorRepository->update($donor->id, $data);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $user;
+  }
+
+  public function handleDeleteUserWithAvatar(User $user)
+  {
+    DB::beginTransaction();
+    try {
+
+      // Handle delete image.
+      if ($user->avatar) :
+        Storage::delete($user->avatar);
+      endif;
+
+      // Delete user.
+      $user = $this->mainRepository->delete($user->id);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $user;
+  }
+
+  public function handleChangeStatus(int $userId)
+  {
+    DB::beginTransaction();
+    try {
+      $return = $this->mainRepository->changeStatus($userId);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('session.log.error'));
+    }
+    DB::commit();
+    return $return;
   }
 }

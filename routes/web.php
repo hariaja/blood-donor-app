@@ -33,6 +33,7 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
 
     // User management.
     Route::post('users/password', [UserController::class, 'password'])->name('users.password');
+    Route::patch('users/status/{user}', [UserController::class, 'status'])->name('users.status');
     Route::resource('users', UserController::class);
 
     // Donor management.

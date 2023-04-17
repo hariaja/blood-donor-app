@@ -30,13 +30,14 @@
 
       <form action="{{ route('users.update', $user->uuid) }}" method="POST" enctype="multipart/form-data" onsubmit="return disableSubmitButton()">
         @csrf
+        @method('PATCH')
 
         <div class="row justify-content-center">
           <div class="col-md-6">
 
             <div class="mb-4">
               <label for="name" class="form-label">{{ trans('Nama') }}</label>
-              <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="{{ trans('Input Nama') }}" onkeypress="return hanyaHuruf(event)">
+              <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" class="form-control @error('name') is-invalid @enderror" placeholder="{{ trans('Input Nama') }}" onkeypress="return hanyaHuruf(event)">
               @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
@@ -44,7 +45,7 @@
 
             <div class="mb-4">
               <label for="email" class="form-label">{{ trans('Email') }}</label>
-              <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required placeholder="Input Email">
+              <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $user->email) }}" required placeholder="Input Email" readonly>
               @error('email')
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
@@ -52,7 +53,7 @@
 
             <div class="mb-4">
               <label for="phone" class="form-label">{{ trans('No. Handphone') }}</label>
-              <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" onkeypress="return hanyaAngka(event)" placeholder="Input No. Handphone">
+              <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone', $user->phone) }}" onkeypress="return hanyaAngka(event)" placeholder="Input No. Handphone">
               @error('phone')
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
@@ -73,10 +74,18 @@
                 </div>
                 <div class="block-content">
                   <div class="push">
-                    <img class="img-prev img-profile-center" src="{{ asset('assets/images/default.png') }}" alt="">
+                    @isset($user->avatar)
+                      <img class="img-prev img-profile-center" src="{{ $user->getAvatar() }}" alt="">
+                    @else
+                      <img class="img-prev img-profile-center" src="{{ asset('assets/images/default.png') }}" alt="">
+                    @endisset
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div class="mb-4">
+              <input type="hidden" name="old_avatar" id="old_avatar" class="form-control" value="{{ $user->avatar }}">
             </div>
 
             <div class="mb-4">
@@ -90,7 +99,7 @@
             <div class="mb-4">
               <button type="submit" class="btn btn-primary w-100" id="submit-button">
                 <i class="fa fa-fw fa-circle-check opacity-50 me-1"></i>
-                {{ trans('page.create') }}
+                {{ trans('page.edit') }}
               </button>
             </div>
 

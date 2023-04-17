@@ -51,3 +51,5 @@ php artisan serve
 ```
 php artisan storage:link
 ```
+
+* LARAVEL DOCUMENTATION: https://laravel.com/docs/10.x

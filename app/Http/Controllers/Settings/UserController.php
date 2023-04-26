@@ -65,7 +65,7 @@ class UserController extends Controller
    */
   public function show(User $user)
   {
-    //
+    return view('settings.users.profile.officer', compact('user'));
   }
 
   /**
@@ -82,10 +82,14 @@ class UserController extends Controller
    */
   public function update(UserRequest $request, User $user)
   {
-    if ($request->roles === Constant::OFFICER) :
+    if ($request->roles === Constant::OFFICER || $request->roles === Constant::ADMIN) :
       $this->userService->updateOfficer($user, $request);
     else :
       abort(500, 'Internal Server Error, Silahkan hubungin admin');
+    endif;
+
+    if (isRoleName() === Constant::OFFICER) :
+      return redirect()->route('users.show', $user->uuid)->withSuccess(trans('session.update'));
     endif;
 
     return redirect()->route('users.index')->withSuccess(trans('session.update'));

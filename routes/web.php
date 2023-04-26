@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Settings\RoleController;
 use App\Http\Controllers\Settings\UserController;
 use App\Http\Controllers\Settings\DonorController;
+use App\Http\Controllers\Settings\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,11 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
     // Role management.
     Route::resource('roles', RoleController::class)->except('show');
 
+    // Management change password.
+    Route::get('users/password/{user}', [PasswordController::class, 'showChangePasswordForm'])->name('users.password');
+    Route::post('users/password', [PasswordController::class, 'store']);
+
     // User management.
-    Route::post('users/password', [UserController::class, 'password'])->name('users.password');
     Route::patch('users/status/{user}', [UserController::class, 'status'])->name('users.status');
     Route::resource('users', UserController::class);
 

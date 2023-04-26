@@ -26,11 +26,11 @@ class DonorRequest extends FormRequest
       'name' => 'required|string|max:50',
       'email' => [
         'required', 'email:dns',
-        Rule::unique('users', 'email')->ignore($this->donor->user_id),
+        $this->method() === 'POST' ? Rule::unique('users', 'email') : Rule::unique('users', 'email')->ignore($this->donor->user_id),
       ],
       'phone' => [
         'required', 'numeric', 'min:12',
-        Rule::unique('users', 'phone')->ignore($this->donor->user_id),
+        $this->method() === 'POST' ? Rule::unique('users', 'phone') : Rule::unique('users', 'phone')->ignore($this->donor->user_id),
       ],
       'nik' => [
         'required', 'numeric', 'min:12',
@@ -40,6 +40,7 @@ class DonorRequest extends FormRequest
       'birth_date' => 'required|date',
       'job_title' => 'required|string|max:30',
       'gender' => 'required|string',
+      'rhesus' => 'required|string',
       'address' => 'required|string',
       'avatar' => 'nullable|mimes:jpg,png|max:3048',
     ];
@@ -73,8 +74,11 @@ class DonorRequest extends FormRequest
       'phone.numeric' => ':attribute harus berupa angka',
       'phone.min' => ':attribute terlalu pendek, minimal :min karakter',
 
+      'gender.required' => ':attribute tidak boleh dikosongkan',
       'gender.string' => ':attribute tidak valid, masukkan yang benar',
-      'gender.max' => ':attribute terlalu panjang, maksimal :max karakter',
+
+      'rhesus.required' => ':attribute tidak boleh dikosongkan',
+      'rhesus.string' => ':attribute tidak valid, masukkan yang benar',
 
       'address.required' => ':attribute tidak boleh dikosongkan',
       'address.string' => ':attribute tidak valid, masukkan yang benar',

@@ -111,21 +111,38 @@
               @enderror
             </div>
           
-            <div class="mb-4">
-              <label for="blood_type_id" class="form-label">{{ trans('Golongan Darah') }}</label>
-              <select name="blood_type_id" id="blood_type_id" class="js-select2 form-select @error('blood_type_id') is-invalid @enderror" data-placeholder="{{ trans('Pilih Golongan Darah') }}" style="width: 100%;">
-                <option></option>
-                @foreach ($bloodTypes as $item)
-                  @if (old('blood_type_id') == $item->id)
-                    <option value="{{ $item->id }}" selected>{{ $item->type }}</option>
-                  @else
-                    <option value="{{ $item->id }}">{{ $item->type }}</option>
-                  @endif
-                @endforeach
-              </select>
-              @error('blood_type_id')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
+            <div class="row">
+              <div class="col-md">
+                <div class="mb-4">
+                  <label for="blood_type_id" class="form-label">{{ trans('Golongan Darah') }}</label>
+                  <select name="blood_type_id" id="blood_type_id" class="js-select2 form-select @error('blood_type_id') is-invalid @enderror" data-placeholder="{{ trans('Pilih Golongan Darah') }}" style="width: 100%;">
+                    <option></option>
+                    @foreach ($bloodTypes as $item)
+                      @if (old('blood_type_id') == $item->id)
+                        <option value="{{ $item->id }}" selected>{{ $item->type }}</option>
+                      @else
+                        <option value="{{ $item->id }}">{{ $item->type }}</option>
+                      @endif
+                    @endforeach
+                  </select>
+                  @error('blood_type_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="mb-4">
+                  <label for="rhesus" class="form-label">{{ trans('Rhesus') }}</label>
+                  <select name="rhesus" id="rhesus" class="form-select @error('rhesus') is-invalid @enderror">
+                    <option disabled selected>{{ trans('Pilih Rhesus') }}</option>
+                    <option value="{{ Constant::POSITIF }}" {{ old('rhesus') === Constant::POSITIF ? 'selected' : '' }}>{{ Constant::POSITIF }}</option>
+                    <option value="{{ Constant::NEGATIF }}" {{ old('rhesus') === Constant::NEGATIF ? 'selected' : '' }}>{{ Constant::NEGATIF }}</option>
+                  </select>
+                  @error('rhesus')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
+              </div>
             </div>
           
             <div class="mb-4">

@@ -19,6 +19,7 @@ return new class extends Migration
       $table->foreignId('blood_type_id')->constrained('blood_types', 'id')->onDelete('cascade');
       $table->string('nik')->unique();
       $table->enum('gender', [Constant::MALE, Constant::FEMALE]);
+      $table->enum('rhesus', [Constant::POSITIF, Constant::NEGATIF])->nullable();
       $table->date('birth_date');
       $table->integer('age');
       $table->string('job_title');

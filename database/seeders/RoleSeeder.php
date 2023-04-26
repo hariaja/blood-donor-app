@@ -43,8 +43,8 @@ class RoleSeeder extends Seeder
 
     $donor = $roles->where('name', Constant::DONOR)->first();
     $donor->syncPermissions(
-      Permission::where('name', 'LIKE', 'users.show')
-        ->orWhere('name', 'LIKE', 'users.update')
+      Permission::where('name', 'LIKE', 'donors.show')
+        ->orWhere('name', 'LIKE', 'donors.update')
         ->orWhere('name', 'LIKE', 'users.password')
         ->get()
     );

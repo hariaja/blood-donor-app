@@ -1,39 +1,46 @@
 @extends('layouts.app')
-@section('title') {{ trans('page.donors.title') }} @endsection
+@section('title') {{ trans('page.users.show') }} @endsection
 @section('hero')
-<div class="bg-body-light">
-  <div class="content content-full">
-    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-      <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ trans('page.donors.title') }}</h1>
-      <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
-        <ol class="breadcrumb breadcrumb-alt">
-          <li class="breadcrumb-item">
-            <a href="{{ route('users.index') }}" class="btn btn-sm btn-block-option text-danger">
-              <i class="fa fa-xs fa-chevron-left me-1"></i>
-              {{ trans('page.button.back') }}
-            </a>
-          </li>
-        </ol>
-      </nav>
+  <div class="bg-image" style="background-image: url({{ asset('assets/dashmix/src/assets/media/photos/photo10@2x.jpg') }});">
+    <div class="bg-primary-dark-op">
+      <div class="content content-full text-center">
+        <div class="my-3">
+          <img class="img-avatar img-avatar-thumb" src="{{ $donor->user->getAvatar() }}" alt="">
+        </div>
+        <h1 class="h2 text-white mb-0">{{ $donor->user->name }}</h1>
+        <h2 class="h4 fw-normal text-white-75">
+          {{ $donor->user->isRoleName() }}
+        </h2>
+        <a class="btn btn-alt-secondary" href="{{ route('home') }}">
+          <i class="fa fa-fw fa-arrow-left text-danger me-1"></i>
+          {{ trans('Back to Dashboard') }}
+        </a>
+      </div>
     </div>
   </div>
-</div>
 @endsection
 @section('content')
+<div class="content content-full content-boxed">
   <div class="block block-rounded">
-    <div class="block-header block-header-default">
-      <h3 class="block-title">
-        {{ trans('page.donors.edit') }}
-      </h3>
-    </div>
-    <div class="block-content block-content-full">
-
+    <div class="block-content">
       <form action="{{ route('donors.update', $donor->uuid) }}" method="POST" enctype="multipart/form-data" onsubmit="return disableSubmitButton()">
         @csrf
         @method('PATCH')
 
-        <div class="row justify-content-center">
-          <div class="col-md-6">
+        <!-- User Profile -->
+        <h2 class="content-heading pt-0">
+          <i class="fa fa-fw fa-user-circle text-muted me-1"></i>
+          {{ trans('Ubah Profile') }}
+        </h2>
+        <div class="row push">
+          <div class="col-lg-4">
+            <p class="text-muted">
+              {{ trans('Info penting akun Anda. Nama pengguna Anda akan terlihat oleh publik.') }}
+            </p>
+          </div>
+          <div class="col-lg-8 col-xl-5">
+
+            <input type="hidden" name="roles" id="roles" value="{{ old('roles', $donor->user->isRoleName()) }}" class="form-control">
 
             <div class="mb-4">
               <label for="name" class="form-label">{{ trans('Nama') }}</label>
@@ -42,7 +49,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
             </div>
-    
+
             <div class="mb-4">
               <label for="email" class="form-label">{{ trans('Email') }}</label>
               <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $donor->user->email) }}" required placeholder="Input Email" readonly>
@@ -50,25 +57,13 @@
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
             </div>
-    
+
             <div class="mb-4">
               <label for="phone" class="form-label">{{ trans('No. Handphone') }}</label>
               <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone', $donor->user->phone) }}" onkeypress="return hanyaAngka(event)" placeholder="Input No. Handphone">
               @error('phone')
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
-            </div>
-    
-            <div class="mb-4">
-              <label for="roles" class="form-label">{{ trans('Role') }}</label>
-              <input type="text" name="roles" id="roles" value="{{ old('roles', $roles->name) }}" class="form-control @error('roles') is-invalid @enderror" placeholder="{{ trans('Input Role') }}" onkeypress="return hanyaHuruf(event)" readonly>
-              @error('roles')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-            </div>
-
-            <div class="mb-4">
-              <h6 class="">{{ trans('Detail Informasi Pendonor') }}</h6>
             </div>
 
             <div class="mb-4">
@@ -89,11 +84,11 @@
             </div>
 
             <div class="mb-4">
-              <input type="hidden" name="old_avatar" id="old_avatar" value="{{ $donor->user->avatar }}" class="form-control">
+              <input type="hidden" name="old_avatar" id="old_avatar" class="form-control" value="{{ $donor->user->avatar }}">
             </div>
 
             <div class="mb-4">
-              <label class="form-label" for="image">{{ trans('Upload Avatar') }}</label>
+              <label class="form-label" for="image">{{ trans('Upload New Avatar') }}</label>
               <input class="form-control @error('avatar') is-invalid @enderror" type="file" accept="image/*" id="image" name="avatar" onchange="return previewImage()">
               @error('avatar')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -119,7 +114,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
             </div>
-          
+
             <div class="row">
               <div class="col-md">
                 <div class="mb-4">
@@ -153,7 +148,7 @@
                 </div>
               </div>
             </div>
-          
+
             <div class="mb-4">
               <label for="birth_date" class="form-label">{{ trans('Tanggal Lahir') }}</label>
               <input type="date" name="birth_date" id="birth_date" class="form-control @error('birth_date') is-invalid @enderror" value="{{ old('birth_date', date('Y-m-d', strtotime($donor->birth_date->toDateString()))) }}">
@@ -177,19 +172,25 @@
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
             </div>
-
-            <div class="mb-4">
-              <button type="submit" class="btn btn-primary w-100" id="submit-button">
-                <i class="fa fa-fw fa-circle-check opacity-50 me-1"></i>
-                {{ trans('page.edit') }}
-              </button>
-            </div>
-
+            
           </div>
         </div>
+        <!-- END User Profile -->
 
+        <!-- Submit -->
+        <div class="row push">
+          <div class="col-lg-8 col-xl-5 offset-lg-4">
+            <div class="mb-4">
+              <button type="submit" class="btn btn-alt-primary w-100" id="submit-button">
+                <i class="fa fa-check-circle opacity-50 me-1"></i>
+                {{ trans('page.button.edit') }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- END Submit -->
       </form>
-
     </div>
   </div>
+</div>
 @endsection

@@ -15,6 +15,9 @@ class Constant
   public const MALE = 'Laki - Laki';
   public const FEMALE = 'Perempuan';
 
+  public const YES = 'Ya';
+  public const NO = 'Tidak';
+
   // User Status
   public const ACTIVE = 1;
   public const INACTIVE = 0;

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -41,6 +42,15 @@ class User extends Authenticatable implements MustVerifyEmail
     'password',
     'remember_token',
   ];
+
+  /**
+   * The relationships that should always be loaded.
+   *
+   * @var array
+   */
+  // protected $with = [
+  //   'donor',
+  // ];
 
   /**
    * The attributes that should be cast.
@@ -148,5 +158,15 @@ class User extends Authenticatable implements MustVerifyEmail
   public function donor(): HasOne
   {
     return $this->hasOne(Donor::class, 'user_id');
+  }
+
+  /**
+   * Relation to registration model.
+   *
+   * @return HasMany
+   */
+  public function registrations(): HasMany
+  {
+    return $this->hasMany(Registration::class, 'user_id');
   }
 }

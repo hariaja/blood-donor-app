@@ -143,6 +143,13 @@ class PermissionSeeder extends Seeder
         'updated_at' => now()
       ],
       [
+        'name' => 'donors.show',
+        'permission_category_id' => 3,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
         'name' => 'donors.edit',
         'permission_category_id' => 3,
         'guard_name' => 'web',

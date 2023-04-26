@@ -100,6 +100,7 @@ class UserServiceImplement extends Service implements UserService
       $data['nik'] = $request->nik;
       $data['user_id'] = $user->id;
       $data['blood_type_id'] = $validation['blood_type_id'];
+      $data['rhesus'] = $request->rhesus;
       $data['gender'] = $validation['gender'];
       $data['birth_date'] = $validation['birth_date'];
       $data['age'] = $validation['age'];
@@ -209,6 +210,7 @@ class UserServiceImplement extends Service implements UserService
       $data['nik'] = $request->nik;
       $data['blood_type_id'] = $request->blood_type_id;
       $data['gender'] = $request->gender;
+      $data['rhesus'] = $request->rhesus;
       $data['birth_date'] = $request->birth_date;
       $data['job_title'] = $request->job_title;
       $data['address'] = $request->address;

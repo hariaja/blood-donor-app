@@ -55,7 +55,8 @@ class DonorController extends Controller
    */
   public function show(Donor $donor)
   {
-    //
+    $bloodTypes = $this->bloodTypeService->orderByType()->get();
+    return view('settings.users.profile.donor', compact('donor', 'bloodTypes'));
   }
 
   /**
@@ -79,6 +80,10 @@ class DonorController extends Controller
       abort(500, 'Internal Server Error, Silahkan hubungin admin');
     endif;
 
-    return redirect()->route('users.index')->withSuccess(trans('session.create'));
+    if (isRoleName() === Constant::DONOR) :
+      return redirect()->route('donors.show', $donor->uuid)->withSuccess(trans('session.update'));
+    endif;
+
+    return redirect()->route('users.index')->withSuccess(trans('session.update'));
   }
 }

@@ -22,6 +22,7 @@ class Donor extends Model
     'blood_type_id',
     'nik',
     'gender',
+    'rhesus',
     'birth_date',
     'age',
     'job_title',

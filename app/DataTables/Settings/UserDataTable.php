@@ -121,7 +121,7 @@ class UserDataTable extends DataTable
         ->title(trans('Peran'))
         ->addClass('text-center'),
       Column::make('status')
-        ->title(trans('Status Akun'))
+        ->title(trans('Status'))
         ->addClass('text-center'),
       Column::make('edit_status')
         ->title(trans('Ubah Status'))
@@ -130,7 +130,7 @@ class UserDataTable extends DataTable
       Column::computed('action')
         ->exportable(false)
         ->printable(false)
-        ->width('15%')
+        ->width('5%')
         ->addClass('text-center'),
     ];
   }

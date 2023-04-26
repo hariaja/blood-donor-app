@@ -5,7 +5,7 @@ Aplikasi ini dibangun menggunakan Framework Laravel 10 dan bertujuan sebagai sal
 ### Requirement
 - Terinstall Node JS https://nodejs.org/en/download
 - Composer versi up to 2.4 https://getcomposer.org/Composer-Setup.exe
-- PHP minimum versi 8.0
+- PHP minimum versi 8.1
 - Anda bisa menggunakan tools dibawah ini: (Pilih salah satu)
 * XAMPP: https://www.apachefriends.org/download.html
 * LARAGON: https://laragon.org/download/index.html

@@ -23,5 +23,11 @@ class UserSeeder extends Seeder
       'password' => bcrypt('password'),
       'status' => Constant::ACTIVE
     ])->assignRole(Constant::ADMIN);
+
+    // User officer
+    for ($i = 1; $i <= 5; $i++) :
+      $officer = User::factory()->create();
+      $officer->assignRole(Constant::OFFICER);
+    endfor;
   }
 }

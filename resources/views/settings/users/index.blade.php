@@ -3,9 +3,8 @@
 @section('hero')
 <div class="bg-body-light">
   <div class="content content-full">
-    <div class="py-3 text-center">
-      <h1 class="mb-2">{{ trans('page.users.title') }}</h1>
-      <h2 class="h4 fw-normal text-muted mb-0">{{ trans('Pengguna yang sudah terdaftar di aplikasi') }}</h2>
+    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
+      <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ trans('page.users.title') }}</h1>
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@
       <h3 class="fw-light">{{ trans('Akun') }}</h3>
       <ul class="list list-simple-mini">
         <li>
-          <a class="fw-semibold" href="javascript:void(0)">
+          <a class="fw-semibold" href="{{ route('users.password', me()->uuid) }}">
             <i class="fa fa-fw fa-wrench text-primary-lighter me-2"></i>
             {{ trans('Ubah Kata Sandi') }}
           </a>

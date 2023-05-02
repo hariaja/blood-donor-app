@@ -12,12 +12,22 @@
   <!-- Main Navigation -->
   <div id="main-navigation" class="d-none d-lg-block push">
     <ul class="nav-main nav-main-horizontal nav-main-hover nav-main-dark">
+
       <li class="nav-main-item">
         <a class="nav-main-link {{ Request::is('home*') ? 'active' : '' }}" href="{{ route('home') }}">
           <i class="nav-main-link-icon fa fa-compass"></i>
           <span class="nav-main-link-name">{{ trans('Overview') }}</span>
         </a>
       </li>
+
+      @can('registrations.index')
+        <li class="nav-main-item">
+          <a class="nav-main-link {{ Request::is('registrations*') ? 'active' : '' }}" href="{{ route('registrations.index') }}">
+            <i class="nav-main-link-icon fa fa-file"></i>
+            <span class="nav-main-link-name">{{ trans('Daftar Jadi Pendonor') }}</span>
+          </a>
+        </li>
+      @endcan
 
       @canany(['roles.index', 'users.index'])
         <li class="nav-main-heading">{{ trans('Management') }}</li>

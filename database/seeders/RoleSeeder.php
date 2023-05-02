@@ -7,7 +7,6 @@ use App\Models\Permission;
 use Illuminate\Database\Seeder;
 use App\Helpers\Global\Constant;
 use Spatie\Permission\PermissionRegistrar;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RoleSeeder extends Seeder
 {
@@ -38,6 +37,7 @@ class RoleSeeder extends Seeder
       Permission::where('name', 'LIKE', 'users.show')
         ->orWhere('name', 'LIKE', 'users.update')
         ->orWhere('name', 'LIKE', 'users.password')
+        ->orWhere('name', 'LIKE', 'registrations.%')
         ->get()
     );
 
@@ -46,6 +46,10 @@ class RoleSeeder extends Seeder
       Permission::where('name', 'LIKE', 'donors.show')
         ->orWhere('name', 'LIKE', 'donors.update')
         ->orWhere('name', 'LIKE', 'users.password')
+        ->orWhere('name', 'LIKE', 'registrations.index')
+        ->orWhere('name', 'LIKE', 'registrations.create')
+        ->orWhere('name', 'LIKE', 'registrations.store')
+        ->orWhere('name', 'LIKE', 'registrations.show')
         ->get()
     );
   }

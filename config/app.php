@@ -214,6 +214,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Constant' => \App\Helpers\Global\Constant::class,
+        'Helper' => \App\Helpers\Global\Helper::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ])->toArray(),
 

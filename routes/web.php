@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Master\RegistrationController;
 use App\Http\Controllers\Settings\RoleController;
 use App\Http\Controllers\Settings\UserController;
 use App\Http\Controllers\Settings\DonorController;
@@ -32,7 +33,7 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
     // Role management.
     Route::resource('roles', RoleController::class)->except('show');
 
-    // Management change password.
+    // Management password users.
     Route::get('users/password/{user}', [PasswordController::class, 'showChangePasswordForm'])->name('users.password');
     Route::post('users/password', [PasswordController::class, 'store']);
 
@@ -43,4 +44,7 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
     // Donor management.
     Route::resource('users/donors', DonorController::class)->except('index', 'destroy');
   });
+
+  // Registration management.
+  Route::resource('registrations', RegistrationController::class)->except('edit');
 });

@@ -33,4 +33,15 @@ return [
     'edit' => 'Formulir Ubah Pendonor',
     'update' => 'Memperbarui Pendonor',
   ],
+
+  'registrations' => [
+    'name' => 'Management Pendaftaran',
+    'index' => 'List Pendaftaran',
+    'create' => 'Formulir Tambah Pendaftaran',
+    'store' => 'Menambahkan Pendaftaran',
+    'show' => 'Detail Pendaftaran',
+    'edit' => 'Formulir Ubah Pendaftaran',
+    'update' => 'Memperbarui Pendaftaran',
+    'destroy' => 'Menghapus Pendaftaran',
+  ],
 ];

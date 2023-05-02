@@ -61,4 +61,12 @@ return [
     'show' => 'Detail Data Pendonor',
   ],
 
+  'registrations' => [
+    'title' => 'Halaman Pendaftaran',
+    'index' => 'Tabel Data Pendaftaran',
+    'create' => 'Tambah Data Pendaftaran',
+    'edit' => 'Ubah Data Pendaftaran',
+    'show' => 'Detail Data Pendaftaran',
+  ],
+
 ];

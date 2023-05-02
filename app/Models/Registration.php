@@ -24,7 +24,16 @@ class Registration extends Model
     'urgency',
     'ramadan',
     'status',
+    'message',
   ];
+
+  /**
+   * Get the route key for the model.
+   */
+  public function getRouteKeyName(): string
+  {
+    return 'uuid';
+  }
 
   /**
    * The relationships that should always be loaded.

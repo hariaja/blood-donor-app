@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title') {{ trans('page.roles.title') }} @endsection
+@section('title') {{ trans('page.registrations.title') }} @endsection
 @section('hero')
 <div class="bg-body-light">
   <div class="content content-full">
     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-      <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ trans('page.roles.title') }}</h1>
+      <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ trans('page.registrations.title') }}</h1>
     </div>
   </div>
 </div>
@@ -13,15 +13,17 @@
   <div class="block block-rounded">
     <div class="block-header block-header-default">
       <h3 class="block-title">
-        {{ trans('page.roles.index') }}
+        {{ trans('page.registrations.index') }}
       </h3>
       <div class="block-options">
-        @can('roles.create')
-          <a href="{{ route('roles.create') }}" class="btn btn-sm btn-primary">
-            <i class="fa fa-plus fa-xs me-1"></i>
-            {{ trans('page.button.create') }}
-          </a>
-        @endcan
+        @if(me()->hasRole(Constant::DONOR))
+          @can('registrations.create')
+            <a href="{{ route('registrations.create') }}" class="btn btn-sm btn-primary">
+              <i class="fa fa-plus fa-xs me-1"></i>
+              {{ trans('page.button.create') }}
+            </a>
+          @endcan
+        @endif
       </div>
     </div>
     <div class="block-content">
@@ -43,7 +45,7 @@
       table = $('.table').DataTable()
     })
 
-    function deleteRole(url) {
+    function deleteRegistration(url) {
       Swal.fire({
         icon: 'warning',
         title: 'Apakah Anda Yakin?',

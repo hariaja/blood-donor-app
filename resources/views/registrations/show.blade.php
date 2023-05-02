@@ -70,7 +70,7 @@
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             {{ trans('Status Pendaftaran') }}
-            <span class="fw-semibold">{{ $registration->status }}</span>
+            {!! $registration->isStatus() !!}
           </li>
         </ul>
       </div>
@@ -82,11 +82,11 @@
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             {{ trans('Terakhir Donor') }}
-            <span class="fw-semibold">{{ Helper::customDate($registration->last_donor) }}</span>
+            <span class="fw-semibold">{{ $registration->getLastDonor() }}</span>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             {{ trans('Donor Kembali') }}
-            <span class="fw-semibold">{{ Helper::customDate($registration->return_donor) }}</span>
+            <span class="fw-semibold">{{ $registration->getReturnDonor() }}</span>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             {{ trans('Bersedia Donor Kapanpun?') }}

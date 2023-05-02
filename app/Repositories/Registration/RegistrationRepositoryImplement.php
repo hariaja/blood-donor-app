@@ -18,4 +18,14 @@ class RegistrationRepositoryImplement extends Eloquent implements RegistrationRe
   {
     $this->model = $model;
   }
+
+  public function approvedRegistration()
+  {
+    return $this->model->approved();
+  }
+
+  public function getByUserId()
+  {
+    return $this->model->where('user_id', me()->id);
+  }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\Schdule;
+namespace App\Repositories\Schedule;
 
 use LaravelEasyRepository\Implementations\Eloquent;
-use App\Models\Schdule;
+use App\Models\Schedule;
 
-class SchduleRepositoryImplement extends Eloquent implements SchduleRepository{
+class ScheduleRepositoryImplement extends Eloquent implements ScheduleRepository{
 
     /**
     * Model class to be used in this repository for the common methods inside Eloquent
@@ -14,7 +14,7 @@ class SchduleRepositoryImplement extends Eloquent implements SchduleRepository{
     */
     protected $model;
 
-    public function __construct(Schdule $model)
+    public function __construct(Schedule $model)
     {
         $this->model = $model;
     }

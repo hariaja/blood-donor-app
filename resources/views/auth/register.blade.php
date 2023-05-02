@@ -76,6 +76,7 @@
                         <option disabled selected>{{ trans('Pilih Rhesus') }}</option>
                         <option value="{{ Constant::POSITIF }}" {{ old('rhesus') === Constant::POSITIF ? 'selected' : '' }}>{{ Constant::POSITIF }}</option>
                         <option value="{{ Constant::NEGATIF }}" {{ old('rhesus') === Constant::NEGATIF ? 'selected' : '' }}>{{ Constant::NEGATIF }}</option>
+                        <option value="{{ Constant::UNKNOWN }}" {{ old('rhesus') === Constant::UNKNOWN ? 'selected' : '' }}>{{ Constant::UNKNOWN }}</option>
                       </select>
                       @error('rhesus')
                         <div class="invalid-feedback">{{ $message }}</div>

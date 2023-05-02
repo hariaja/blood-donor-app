@@ -70,7 +70,7 @@
 
           </div>
 
-          <div class="mb-3">
+          <div class="mb-4">
             <label for="last_donor" class="form-label">{{ trans('Terakhir Melakukan Donor') }}</label>
             <input type="date" name="last_donor" id="last_donor" class="form-control @error('last_donor') is-invalid @enderror" value="{{ old('last_donor') }}">
             <span class="text-muted fw-semibold fs-xs">{{ trans('Kosongkan jika belum pernah') }}</span>
@@ -79,7 +79,7 @@
             @enderror
           </div>
 
-          <div class="mb-3">
+          <div class="mb-4">
             <label class="form-label mb-2">{{ trans('Apakah anda bersedia melakukan donor pada waktu tertentu? (Di luar donor rutin)') }}</label>
             <div class="space-x-2">
               <div class="form-check form-check-inline">
@@ -97,7 +97,7 @@
             @enderror
           </div>
 
-          <div class="mb-3">
+          <div class="mb-4">
             <label class="form-label mb-2">{{ trans('Apakah anda bersedia melakukan donor pada bulan puasa?') }}</label>
             <div class="space-x-2">
               <div class="form-check form-check-inline">

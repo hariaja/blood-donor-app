@@ -69,4 +69,12 @@ return [
     'show' => 'Detail Data Pendaftaran',
   ],
 
+  'schedules' => [
+    'title' => 'Halaman Jadwal',
+    'index' => 'Tabel Data Jadwal',
+    'create' => 'Tambah Data Jadwal',
+    'edit' => 'Ubah Data Jadwal',
+    'show' => 'Detail Data Jadwal',
+  ],
+
 ];

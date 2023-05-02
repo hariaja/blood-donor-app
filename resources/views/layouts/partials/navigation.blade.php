@@ -29,6 +29,15 @@
         </li>
       @endcan
 
+      @can('schedules.index')
+        <li class="nav-main-item">
+          <a class="nav-main-link {{ Request::is('schedules*') ? 'active' : '' }}" href="{{ route('schedules.index') }}">
+            <i class="nav-main-link-icon fa fa-calendar"></i>
+            <span class="nav-main-link-name">{{ trans('Jadwal') }}</span>
+          </a>
+        </li>
+      @endcan
+
       @canany(['roles.index', 'users.index'])
         <li class="nav-main-heading">{{ trans('Management') }}</li>
         <li class="nav-main-item">

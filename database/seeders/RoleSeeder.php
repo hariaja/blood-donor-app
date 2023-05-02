@@ -38,6 +38,7 @@ class RoleSeeder extends Seeder
         ->orWhere('name', 'LIKE', 'users.update')
         ->orWhere('name', 'LIKE', 'users.password')
         ->orWhere('name', 'LIKE', 'registrations.%')
+        ->orWhere('name', 'LIKE', 'schedules.%')
         ->get()
     );
 
@@ -50,6 +51,8 @@ class RoleSeeder extends Seeder
         ->orWhere('name', 'LIKE', 'registrations.create')
         ->orWhere('name', 'LIKE', 'registrations.store')
         ->orWhere('name', 'LIKE', 'registrations.show')
+        ->orWhere('name', 'LIKE', 'schedules.index')
+        ->orWhere('name', 'LIKE', 'schedules.show')
         ->get()
     );
   }

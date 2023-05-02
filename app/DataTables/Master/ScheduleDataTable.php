@@ -2,29 +2,16 @@
 
 namespace App\DataTables\Master;
 
-use App\Helpers\Global\Constant;
-use App\Models\Registration;
+use App\Models\Schedule;
 use App\Helpers\Global\Helper;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use App\Services\Registration\RegistrationService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
-class RegistrationDataTable extends DataTable
+class ScheduleDataTable extends DataTable
 {
-  /**
-   * Create a new datatable instance.
-   *
-   * @return void
-   */
-  public function __construct(
-    protected RegistrationService $registrationService,
-  ) {
-    // 
-  }
-
   /**
    * Build the DataTable class.
    *
@@ -34,23 +21,18 @@ class RegistrationDataTable extends DataTable
   {
     return (new EloquentDataTable($query))
       ->addIndexColumn()
-      ->addColumn('user_name', fn ($row) => $row->user->name)
-      ->editColumn('status', fn ($row) => $row->isStatus())
-      ->editColumn('created_at', fn ($row) => Helper::customDate($row->created_at))
-      ->addColumn('action', 'registrations.action')
-      ->rawColumns(['action', 'status']);
+      ->addColumn('date', fn ($row) => Helper::customDate($row->date))
+      ->addColumn('registration', fn ($row) => $row->registration->number)
+      ->addColumn('user_name', fn ($row) => $row->registration->user->name)
+      ->addColumn('action', 'schedules.action');
   }
 
   /**
    * Get the query source of dataTable.
    */
-  public function query(Registration $model): QueryBuilder
+  public function query(Schedule $model): QueryBuilder
   {
-    if (isRoleName() === Constant::ADMIN) {
-      return $model->newQuery();
-    } else {
-      return $this->registrationService->getByUserId();
-    }
+    return $model->newQuery();
   }
 
   /**
@@ -59,7 +41,7 @@ class RegistrationDataTable extends DataTable
   public function html(): HtmlBuilder
   {
     return $this->builder()
-      ->setTableId('registration-table')
+      ->setTableId('schedule-table')
       ->columns($this->getColumns())
       ->addTableClass([
         'table',
@@ -90,17 +72,17 @@ class RegistrationDataTable extends DataTable
         ->searchable(false)
         ->width('10%')
         ->addClass('text-center'),
-      Column::make('number')
+      Column::make('registration')
         ->title(trans('No. Pendaftaran'))
         ->addClass('text-center'),
+      Column::make('date')
+        ->title(trans('Tanggal Pengambilan'))
+        ->addClass('text-center'),
       Column::make('user_name')
-        ->title(trans('Nama Pendaftar'))
+        ->title(trans('Nama Pendonor'))
         ->addClass('text-center'),
       Column::make('status')
         ->title(trans('Status'))
-        ->addClass('text-center'),
-      Column::make('created_at')
-        ->title(trans('Tanggal Daftar'))
         ->addClass('text-center'),
       Column::computed('action')
         ->exportable(false)
@@ -115,6 +97,6 @@ class RegistrationDataTable extends DataTable
    */
   protected function filename(): string
   {
-    return 'Registration_' . date('YmdHis');
+    return 'Schedule_' . date('YmdHis');
   }
 }

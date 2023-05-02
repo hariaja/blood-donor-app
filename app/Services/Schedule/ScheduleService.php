@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Schdule;
+namespace App\Services\Schedule;
 
 use LaravelEasyRepository\BaseService;
 
-interface SchduleService extends BaseService{
+interface ScheduleService extends BaseService{
 
     // Write something awesome :)
 }

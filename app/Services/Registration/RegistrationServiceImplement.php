@@ -26,6 +26,34 @@ class RegistrationServiceImplement extends Service implements RegistrationServic
     $this->mainRepository = $mainRepository;
   }
 
+  public function getApprovedOnly()
+  {
+    DB::beginTransaction();
+    try {
+      $return = $this->mainRepository->approvedRegistration();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $return;
+  }
+
+  public function getByUserId()
+  {
+    DB::beginTransaction();
+    try {
+      $return = $this->mainRepository->getByUserId();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $return;
+  }
+
   public function handleNewRegistration($request)
   {
     DB::beginTransaction();

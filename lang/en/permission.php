@@ -44,4 +44,15 @@ return [
     'update' => 'Memperbarui Pendaftaran',
     'destroy' => 'Menghapus Pendaftaran',
   ],
+
+  'schedules' => [
+    'name' => 'Management Jadwal',
+    'index' => 'List Jadwal',
+    'create' => 'Formulir Tambah Jadwal',
+    'store' => 'Menambahkan Jadwal',
+    'show' => 'Detail Jadwal',
+    'edit' => 'Formulir Ubah Jadwal',
+    'update' => 'Memperbarui Jadwal',
+    'destroy' => 'Menghapus Jadwal',
+  ],
 ];

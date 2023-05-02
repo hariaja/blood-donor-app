@@ -21,6 +21,7 @@ class Schedule extends Model
     'date',
     'location',
     'address',
+    'status',
   ];
 
   /**
@@ -47,6 +48,6 @@ class Schedule extends Model
    */
   public function registration(): BelongsTo
   {
-    return $this->belongsTo(Registration::class, 'resgitration_id');
+    return $this->belongsTo(Registration::class, 'registration_id');
   }
 }

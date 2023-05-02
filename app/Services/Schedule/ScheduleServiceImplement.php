@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Schdule;
+namespace App\Services\Schedule;
 
 use LaravelEasyRepository\Service;
-use App\Repositories\Schdule\SchduleRepository;
+use App\Repositories\Schedule\ScheduleRepository;
 
-class SchduleServiceImplement extends Service implements SchduleService{
+class ScheduleServiceImplement extends Service implements ScheduleService{
 
      /**
      * don't change $this->mainRepository variable name
@@ -13,7 +13,7 @@ class SchduleServiceImplement extends Service implements SchduleService{
      */
      protected $mainRepository;
 
-    public function __construct(SchduleRepository $mainRepository)
+    public function __construct(ScheduleRepository $mainRepository)
     {
       $this->mainRepository = $mainRepository;
     }

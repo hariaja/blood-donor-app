@@ -100,7 +100,7 @@ class UserServiceImplement extends Service implements UserService
       $data['nik'] = $request->nik;
       $data['user_id'] = $user->id;
       $data['blood_type_id'] = $validation['blood_type_id'];
-      $data['rhesus'] = $request->rhesus;
+      $data['rhesus'] = $request['rhesus'];
       $data['gender'] = $validation['gender'];
       $data['birth_date'] = $validation['birth_date'];
       $data['age'] = $validation['age'];
@@ -205,15 +205,22 @@ class UserServiceImplement extends Service implements UserService
       $user = $this->mainRepository->findOrFail($donor->user_id);
       $user->update($validation);
 
+      // Jika pengguna memilih golongan darah tidak tahu
+      if ($validation['blood_type_id'] == 1) {
+        $request['rhesus'] = Constant::UNKNOWN;
+      } else {
+        $request['rhesus'] = $request['rhesus'];
+      }
+
       $data = array();
       $data['age'] = $age;
-      $data['nik'] = $request->nik;
-      $data['blood_type_id'] = $request->blood_type_id;
-      $data['gender'] = $request->gender;
-      $data['rhesus'] = $request->rhesus;
-      $data['birth_date'] = $request->birth_date;
-      $data['job_title'] = $request->job_title;
-      $data['address'] = $request->address;
+      $data['nik'] = $request['nik'];
+      $data['blood_type_id'] = $request['blood_type_id'];
+      $data['gender'] = $request['gender'];
+      $data['rhesus'] = $request['rhesus'];
+      $data['birth_date'] = $request['birth_date'];
+      $data['job_title'] = $request['job_title'];
+      $data['address'] = $request['address'];
 
       // Create user & sync user.
       $donor = $this->donorRepository->update($donor->id, $data);

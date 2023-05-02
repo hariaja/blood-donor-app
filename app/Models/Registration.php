@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Uuid;
+use App\Helpers\Global\Constant;
+use App\Helpers\Global\Helper;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Registration extends Model
 {
@@ -54,6 +57,58 @@ class Registration extends Model
     'last_donor' => 'date:c',
     'return_donor' => 'date:c',
   ];
+
+  /**
+   * Scope a query to only include approved registration.
+   */
+  public function scopeApproved($data)
+  {
+    return $data->where('status', Constant::APPROVED);
+  }
+
+  public function getApproved(): Collection
+  {
+    return $this->approved()->get();
+  }
+
+  /**
+   * Return last donor
+   *
+   * @return void
+   */
+  public function getLastDonor()
+  {
+    if (!$this->last_donor) {
+      return '-';
+    } else {
+      return Helper::customDate($this->last_donor);
+    }
+  }
+
+  public function isStatus()
+  {
+    if ($this->status === Constant::APPROVED) :
+      return '<span class="badge text-success">' . Constant::APPROVED . '</span>';
+    elseif ($this->status === Constant::REJECTED) :
+      return '<span class="badge text-danger">' . Constant::REJECTED . '</span>';
+    else :
+      return '<span class="badge text-info">' . Constant::PENDING . '</span>';
+    endif;
+  }
+
+  /**
+   * Return past donor
+   *
+   * @return void
+   */
+  public function getReturnDonor()
+  {
+    if (!$this->return_donor) {
+      return '-';
+    } else {
+      return Helper::customDate($this->return_donor);
+    }
+  }
 
   /**
    * Relation to user model.

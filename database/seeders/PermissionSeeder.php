@@ -207,6 +207,50 @@ class PermissionSeeder extends Seeder
         'created_at' => now(),
         'updated_at' => now()
       ],
+
+      // Halaman Jadwal
+      [
+        'name' => 'schedules.index',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'schedules.create',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'schedules.store',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'schedules.edit',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'schedules.update',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'schedules.destroy',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
     ];
 
     $collects = collect($items);

@@ -24,7 +24,7 @@
         <li class="nav-main-item">
           <a class="nav-main-link {{ Request::is('registrations*') ? 'active' : '' }}" href="{{ route('registrations.index') }}">
             <i class="nav-main-link-icon fa fa-file"></i>
-            <span class="nav-main-link-name">{{ trans('Daftar Jadi Pendonor') }}</span>
+            <span class="nav-main-link-name">{{ trans('Pendaftaran') }}</span>
           </a>
         </li>
       @endcan

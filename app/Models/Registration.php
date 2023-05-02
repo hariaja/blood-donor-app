@@ -6,6 +6,7 @@ use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Registration extends Model
 {
@@ -62,5 +63,15 @@ class Registration extends Model
   public function user(): BelongsTo
   {
     return $this->belongsTo(User::class, 'user_id');
+  }
+
+  /**
+   * Relation to schedule model.
+   *
+   * @return HasMany
+   */
+  public function schedules(): HasMany
+  {
+    return $this->hasMany(Schedule::class, 'registration_id');
   }
 }

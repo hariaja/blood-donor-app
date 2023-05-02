@@ -38,4 +38,8 @@ class Constant
   public const PENDING = 'Pending';
   public const APPROVED = 'Approved';
   public const REJECTED = 'Rejected';
+
+  // Const
+  public const LOCATION = 'Palang Merah Indonesia Kota Sukabumi';
+  public const ADDRESS = 'Jl. Arif Rahman Hakim No. 51 Benteng, Kec. Warudoyong, Kota Sukabumi, Jawa Barat 43132';
 }

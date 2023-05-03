@@ -15,6 +15,14 @@
     <h3 class="block-title">
       {{ trans('page.schedules.index') }}
     </h3>
+    <div class="block-options">
+      @can('schedules.create')
+        <a href="{{ route('schedules.create') }}" class="btn btn-sm btn-primary">
+          <i class="fa fa-plus fa-xs me-1"></i>
+          {{ trans('page.button.create') }}
+        </a>
+      @endcan
+    </div>
   </div>
   <div class="block-content">
 
@@ -24,6 +32,9 @@
 
   </div>
 </div>
+
+@includeIf('modals.show-schedule')
+
 @endsection
 @push('javascript')
   {{ $dataTable->scripts() }}
@@ -34,6 +45,22 @@
     $(function () {
       table = $('.table').DataTable()
     })
+
+    function detailSchedule(url) {
+      console.log(url)
+      $('#modal-show-schdule').modal('show')
+      $.get(url)
+        .done((response) => {
+          $('#modal-show-schdule #number').text(response.schedule.registration.number)
+          $('#modal-show-schdule #last-donor').text(response.schedule.last_donor)
+          $('#modal-show-schdule #return-donor').text(response.schedule.return_donor)
+          $('#modal-show-schdule #urgency').text(response.schedule.registration.urgency)
+          $('#modal-show-schdule #ramadan').text(response.schedule.registration.ramadan)
+          $('#modal-show-schdule #location').text(response.schedule.location)
+          $('#modal-show-schdule #address').text(response.schedule.address)
+          $('#modal-show-schdule #take-date').text(response.schedule.take_date)
+        })
+    }
 
     function deleteSchedule(url) {
       Swal.fire({

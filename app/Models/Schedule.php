@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use App\Traits\Uuid;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Helpers\Global\Constant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Schedule extends Model
 {
@@ -33,6 +34,15 @@ class Schedule extends Model
   }
 
   /**
+   * The relationships that should always be loaded.
+   *
+   * @var array
+   */
+  protected $with = [
+    'registration',
+  ];
+
+  /**
    * The attributes that should be cast.
    *
    * @var array<string, string>
@@ -40,6 +50,20 @@ class Schedule extends Model
   protected $casts = [
     'date' => 'date:c',
   ];
+
+  /**
+   * Schedule status.
+   *
+   * @return void
+   */
+  public function isStatus()
+  {
+    if ($this->status === Constant::HAVE_ARRIVED) :
+      return '<span class="badge text-success">' . Constant::HAVE_ARRIVED . '</span>';
+    else :
+      return '<span class="badge text-danger">' . Constant::NOT_YET_COME . '</span>';
+    endif;
+  }
 
   /**
    * Relation to registration model.

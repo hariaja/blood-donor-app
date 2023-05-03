@@ -21,6 +21,8 @@
     <!-- END Fonts -->
 
     @include('layouts.components.style')
+
+    @vite([])
   </head>
 
   <body>

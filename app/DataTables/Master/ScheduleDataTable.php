@@ -24,7 +24,12 @@ class ScheduleDataTable extends DataTable
       ->addColumn('date', fn ($row) => Helper::customDate($row->date))
       ->addColumn('registration', fn ($row) => $row->registration->number)
       ->addColumn('user_name', fn ($row) => $row->registration->user->name)
-      ->addColumn('action', 'schedules.action');
+      ->editColumn('status', fn ($row) => $row->isStatus())
+      ->addColumn('action', 'schedules.action')
+      ->rawColumns([
+        'status',
+        'action'
+      ]);
   }
 
   /**

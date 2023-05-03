@@ -46,10 +46,10 @@ class RegistrationDataTable extends DataTable
    */
   public function query(Registration $model): QueryBuilder
   {
-    if (isRoleName() === Constant::ADMIN) {
-      return $model->newQuery();
-    } else {
+    if (isRoleName() === Constant::DONOR) {
       return $this->registrationService->getByUserId();
+    } else {
+      return $model->newQuery();
     }
   }
 

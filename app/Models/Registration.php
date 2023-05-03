@@ -85,6 +85,11 @@ class Registration extends Model
     }
   }
 
+  /**
+   * Return registration status
+   *
+   * @return void
+   */
   public function isStatus()
   {
     if ($this->status === Constant::APPROVED) :

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Master;
 
 use App\DataTables\Master\ScheduleDataTable;
+use App\Helpers\Global\Helper;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -55,6 +56,10 @@ class ScheduleController extends Controller
    */
   public function show(Schedule $schedule)
   {
+    $schedule->last_donor = Helper::customDate($schedule->registration->last_donor);
+    $schedule->return_donor = Helper::customDate($schedule->registration->return_donor);
+    $schedule->take_date = Helper::customDate($schedule->date);
+
     return response()->json([
       'schedule' => $schedule
     ]);

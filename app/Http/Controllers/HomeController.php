@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Global\Dashboard;
+use App\Services\Donor\DonorService;
+use App\Services\User\UserService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,7 +14,7 @@ class HomeController extends Controller
    *
    * @return void
    */
-  public function __construct()
+  public function __construct(protected UserService $userService)
   {
     $this->middleware(['auth', 'verified']);
   }
@@ -23,6 +26,8 @@ class HomeController extends Controller
    */
   public function index()
   {
-    return view('home');
+    $data = array();
+    $data['dashboard'] = new Dashboard;
+    return view('home', $data);
   }
 }

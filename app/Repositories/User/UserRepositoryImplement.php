@@ -41,4 +41,11 @@ class UserRepositoryImplement extends Eloquent implements UserRepository
 
     return $user;
   }
+
+  public function onlyDonor()
+  {
+    return $this->model->whereHas('roles', function ($query) {
+      $query->where('name', Constant::DONOR);
+    })->active();
+  }
 }

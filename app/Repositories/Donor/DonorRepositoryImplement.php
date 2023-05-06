@@ -23,4 +23,9 @@ class DonorRepositoryImplement extends Eloquent implements DonorRepository
   {
     return $this->model->where('user_id', $userId);
   }
+
+  public function getDonorActive()
+  {
+    // 
+  }
 }

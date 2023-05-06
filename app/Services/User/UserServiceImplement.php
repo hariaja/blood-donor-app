@@ -70,6 +70,20 @@ class UserServiceImplement extends Service implements UserService
     return $return;
   }
 
+  public function onlyDonor()
+  {
+    DB::beginTransaction();
+    try {
+      $return = $this->mainRepository->onlyDonor();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $return;
+  }
+
   public function registerUsers(Request $request)
   {
     DB::beginTransaction();

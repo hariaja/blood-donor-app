@@ -20,17 +20,21 @@
 <script src="{{ asset('assets/dashmix/src/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('assets/dashmix/src/assets/js/plugins/flatpickr/flatpickr.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="{{ asset('assets/dashmix/src/assets/js/plugins/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+<script src="{{ asset('assets/dashmix/src/assets/js/plugins/chart.js/chart.min.js') }}"></script>
 
 <!-- Page JS Code -->
 <script src="{{ asset('assets/dashmix/src/assets/js/plugins/ckeditor/ckeditor.js') }}"></script>
 <script src="{{ asset('assets/dashmix/src/assets/js/pages/be_tables_datatables.min.js') }}"></script>
 <script src="{{ asset('assets/dashmix/src/assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('assets/dashmix/src/assets/js/pages/be_pages_dashboard_v1.min.js') }}"></script>
 <script>
   Dashmix.helpersOnLoad([
     'jq-select2',
     'jq-magnific-popup',
     'jq-datepicker',
-    'js-flatpickr'
+    'js-flatpickr',
+    'jq-sparkline',
   ])
 </script>
 

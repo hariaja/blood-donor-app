@@ -11,6 +11,7 @@ interface UserService extends BaseService
 {
   public function excludeAdmin();
   public function getBloodTypes();
+  public function onlyDonor();
   public function registerUsers(Request $request);
   public function handleCreateNewUser(Request $request);
   public function updateOfficer(User $user, Request $request);

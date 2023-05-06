@@ -28,6 +28,20 @@
     </div>
     <div class="block-content">
 
+      <div class="row">
+        <div class="col-md-4">
+          <div class="mb-4">
+            <label for="status" class="form-label">{{ trans('Filter Status') }}</label>
+            <select type="text" class="form-select" name="status" id="status">
+              <option value="{{ Constant::ALL }}">{{ Constant::ALL }}</option>
+              <option value="{{ Constant::PENDING }}">{{ Constant::PENDING }}</option>
+              <option value="{{ Constant::APPROVED }}">{{ Constant::APPROVED }}</option>
+              <option value="{{ Constant::REJECTED }}">{{ Constant::REJECTED }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
       <div class="my-3">
         {{ $dataTable->table() }}
       </div>
@@ -43,6 +57,11 @@
 
     $(function () {
       table = $('.table').DataTable()
+
+      $('#status').on('change', function (e) {
+        table.draw()
+        e.preventDefault()
+      })
     })
 
     function deleteRegistration(url) {

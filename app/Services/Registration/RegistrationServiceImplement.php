@@ -54,6 +54,11 @@ class RegistrationServiceImplement extends Service implements RegistrationServic
     return $return;
   }
 
+  public function registrationHasSchedule()
+  {
+    // 
+  }
+
   public function handleNewRegistration($request)
   {
     DB::beginTransaction();

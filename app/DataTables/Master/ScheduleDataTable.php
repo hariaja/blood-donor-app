@@ -48,6 +48,15 @@ class ScheduleDataTable extends DataTable
     return $this->builder()
       ->setTableId('schedule-table')
       ->columns($this->getColumns())
+      ->ajax([
+        'url' => route('schedules.index'),
+        'type' => 'GET',
+        'data' => "
+          function(data) {
+            _token = '{{ csrf_token() }}',
+            data.status = $('select[name=status]').val();
+          }"
+      ])
       ->addTableClass([
         'table',
         'table-striped',

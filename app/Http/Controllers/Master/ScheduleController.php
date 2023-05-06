@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Master;
 
 use App\DataTables\Master\ScheduleDataTable;
+use App\DataTables\Scopes\StatusFilter;
 use App\Helpers\Global\Helper;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
@@ -22,15 +23,15 @@ class ScheduleController extends Controller
     protected ScheduleService $scheduleService,
     protected RegistrationService $registrationService,
   ) {
-    // 
+    //
   }
 
   /**
    * Display a listing of the resource.
    */
-  public function index(ScheduleDataTable $scheduleDataTable)
+  public function index(ScheduleDataTable $scheduleDataTable, Request $request)
   {
-    return $scheduleDataTable->render('schedules.index');
+    return $scheduleDataTable->addScope(new StatusFilter($request))->render('schedules.index');
   }
 
   /**
@@ -70,15 +71,17 @@ class ScheduleController extends Controller
    */
   public function edit(Schedule $schedule)
   {
-    //
+    $registrations = $this->registrationService->getApprovedOnly()->get();
+    return view('schedules.edit', compact('schedule', 'registrations'));
   }
 
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Schedule $schedule)
+  public function update(ScheduleRequest $request, Schedule $schedule)
   {
-    //
+    $this->scheduleService->update($schedule->id, $request->all());
+    return redirect()->route('schedules.index')->withSuccess(trans('session.update'));
   }
 
   /**
@@ -86,6 +89,9 @@ class ScheduleController extends Controller
    */
   public function destroy(Schedule $schedule)
   {
-    //
+    $this->scheduleService->delete($schedule->id);
+    return response()->json([
+      'message' => trans('session.delete'),
+    ]);
   }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Master;
 
 use App\DataTables\Master\RegistrationDataTable;
+use App\DataTables\Scopes\StatusFilter;
 use App\Helpers\Global\Constant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Master\RegistrationRequest;
@@ -26,9 +27,9 @@ class RegistrationController extends Controller
   /**
    * Display a listing of the resource.
    */
-  public function index(RegistrationDataTable $dataTable)
+  public function index(RegistrationDataTable $dataTable, Request $request)
   {
-    return $dataTable->render('registrations.index');
+    return $dataTable->addScope(new StatusFilter($request))->render('registrations.index');
   }
 
   /**

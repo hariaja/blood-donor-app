@@ -26,6 +26,19 @@
   </div>
   <div class="block-content">
 
+    <div class="row">
+      <div class="col-md-4">
+        <div class="mb-4">
+          <label for="status" class="form-label">{{ trans('Filter Status') }}</label>
+          <select type="text" class="form-select" name="status" id="status">
+            <option value="{{ Constant::ALL }}">{{ Constant::ALL }}</option>
+            <option value="{{ Constant::HAVE_ARRIVED }}">{{ Constant::HAVE_ARRIVED }}</option>
+            <option value="{{ Constant::NOT_YET_COME }}">{{ Constant::NOT_YET_COME }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
     <div class="my-3">
       {{ $dataTable->table() }}
     </div>
@@ -44,6 +57,11 @@
 
     $(function () {
       table = $('.table').DataTable()
+
+      $('#status').on('change', function (e) {
+        table.draw()
+        e.preventDefault()
+      })
     })
 
     function detailSchedule(url) {

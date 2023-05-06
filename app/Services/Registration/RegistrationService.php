@@ -8,6 +8,7 @@ interface RegistrationService extends BaseService
 {
   public function getByUserId();
   public function getApprovedOnly();
+  public function registrationHasSchedule();
   public function handleNewRegistration($request);
   public function handleUpdateStatus($registration, $request);
 }

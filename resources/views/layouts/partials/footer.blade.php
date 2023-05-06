@@ -36,7 +36,7 @@
       </span>
     </div>
     <div class="col-sm-6 order-sm-1 text-center text-sm-start">
-      <a class="fw-semibold text-danger" href="#" target="_blank">{{ trans('Palang Merah Indonesia Kota Sukabumi') }}</a> &copy; <span data-toggle="year-copy"></span>
+      Copyright &copy; <a class="fw-semibold text-danger" href="#" target="_blank">{{ trans('Palang Merah Indonesia Kota Sukabumi') }}</a> <span data-toggle="year-copy"></span>
     </div>
   </div>
   <!-- END Footer Copyright -->

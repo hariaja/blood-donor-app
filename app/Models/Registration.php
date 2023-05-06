@@ -7,9 +7,9 @@ use App\Helpers\Global\Constant;
 use App\Helpers\Global\Helper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Registration extends Model
 {
@@ -128,10 +128,10 @@ class Registration extends Model
   /**
    * Relation to schedule model.
    *
-   * @return HasMany
+   * @return HasOne
    */
-  public function schedules(): HasMany
+  public function schedule(): HasOne
   {
-    return $this->hasMany(Schedule::class, 'registration_id');
+    return $this->hasOne(Schedule::class, 'registration_id');
   }
 }

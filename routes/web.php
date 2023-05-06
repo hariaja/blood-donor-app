@@ -9,6 +9,7 @@ use App\Http\Controllers\Settings\RoleController;
 use App\Http\Controllers\Settings\UserController;
 use App\Http\Controllers\Settings\DonorController;
 use App\Http\Controllers\Settings\PasswordController;
+use App\Providers\RouteServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ use App\Http\Controllers\Settings\PasswordController;
 */
 
 Route::get('/', function () {
-  return view('welcome');
+  return redirect(RouteServiceProvider::HOME);
 });
 
 Auth::routes(['verify' => true]);

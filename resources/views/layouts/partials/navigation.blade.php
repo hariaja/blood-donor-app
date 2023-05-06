@@ -64,16 +64,16 @@
         </li>
       @endcan
 
-      <li class="nav-main-item">
-        <a class="nav-main-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-          <i class="nav-main-link-icon fa fa-undo"></i>
+      {{-- <li class="nav-main-item">
+        <a class="nav-main-link text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          <i class="nav-main-link-icon fa fa-undo text-danger"></i>
           <span class="nav-main-link-name">{{ trans('Log Out') }}</span>
         </a>
 
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
           @csrf
         </form>
-      </li>
+      </li> --}}
 
     </ul>
   </div>

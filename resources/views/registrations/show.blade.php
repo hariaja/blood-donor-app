@@ -168,6 +168,7 @@
 
     $(function () {
       let REJECTED = '{{ Constant::REJECTED }}'
+
       $('input[name="status"]').change(function () {
         if ($(this).val() === REJECTED) {
           $('#update-status-area').show()

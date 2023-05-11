@@ -40,7 +40,7 @@ Karena ada beberapa penyesuaian yang terjadi, maka berikut di bawah ini data pen
 
 Atas perhatiannya kami ucapkan terimakasih banyak dan dimohon untuk datang tepat pada waktunya.
 
-Terimakasih,<br>
+Terimakasih, <br>
 {{ config('site.company.name') }} <br>
 {{ Constant::ADMIN }} {{ config('app.name') }}
 </x-mail::message>

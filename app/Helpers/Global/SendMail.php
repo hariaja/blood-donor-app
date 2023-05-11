@@ -7,6 +7,7 @@ use App\Mail\Schedules\InvitationMail;
 use App\Mail\Schedules\ChangeScheduleMail;
 use App\Mail\Registrations\RegistrationApproved;
 use App\Mail\Registrations\RegistrationRejected;
+use App\Mail\Schedules\SayThanksMail;
 
 class SendMail
 {
@@ -57,5 +58,14 @@ class SendMail
     $data['time'] = $request->time;
 
     return Mail::to($data['email'])->send(new ChangeScheduleMail($data));
+  }
+
+  public static function sendSayThanksMail($schedule)
+  {
+    $data = array();
+    $data['name'] = $schedule->registration->user->name;
+    $data['email'] = $schedule->registration->user->email;
+
+    return Mail::to($data['email'])->send(new SayThanksMail($data));
   }
 }

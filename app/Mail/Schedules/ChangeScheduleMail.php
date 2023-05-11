@@ -29,7 +29,7 @@ class ChangeScheduleMail extends Mailable
   public function envelope(): Envelope
   {
     return new Envelope(
-      subject: 'Change Schedule Mail',
+      subject: 'Jadwal Pengambilan Darah Diubah',
     );
   }
 

@@ -57,14 +57,15 @@ class ScheduleServiceImplement extends Service implements ScheduleService
   {
     DB::beginTransaction();
     try {
-
       if ($request->status !== Constant::NOT_YET_COME) :
-      // 
+        SendMail::sendSayThanksMail($schedule);
+        $return = $this->mainRepository->update($schedule->id, [
+          'status' => $request->status,
+        ]);
       else :
         SendMail::sendChangeInvitationMail($schedule, $request);
+        $return = $this->mainRepository->update($schedule->id, $request->validated());
       endif;
-
-      $return = $this->mainRepository->update($schedule->id, $request->validated());
     } catch (Exception $e) {
       DB::rollBack();
       Log::info($e->getMessage());

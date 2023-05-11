@@ -72,35 +72,4 @@ class Helper
     endif;
     return $pattern . sprintf("%0" . $digit . "s", $next);
   }
-
-  public static function sendApprovedEmail($registration, $request)
-  {
-    $data = array();
-    $data['name'] = $registration->user->name;
-    $data['email'] = $registration->user->email;
-    $data['phone'] = $registration->user->phone;
-    $data['created_at'] = Helper::customDate($registration->created_at, true);
-    $data['status'] = $request->status;
-    $data['approved_by'] = me()->name;
-
-    Mail::to($registration->user->email)->send(new RegistrationApproved($data));
-
-    return;
-  }
-
-  public static function sendRejectedEmail($registration, $request)
-  {
-    $data = array();
-    $data['name'] = $registration->user->name;
-    $data['email'] = $registration->user->email;
-    $data['phone'] = $registration->user->phone;
-    $data['created_at'] = Helper::customDate($registration->created_at, true);
-    $data['status'] = $request->status;
-    $data['message'] = $request->message;
-    $data['approved_by'] = me()->name;
-
-    Mail::to($registration->user->email)->send(new RegistrationRejected($data));
-
-    return;
-  }
 }

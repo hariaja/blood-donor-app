@@ -17,6 +17,7 @@ class Donor extends Model
    * @var array<int, string>
    */
   protected $fillable = [
+    'uuid',
     'name',
     'user_id',
     'blood_type_id',

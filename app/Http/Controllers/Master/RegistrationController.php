@@ -37,12 +37,18 @@ class RegistrationController extends Controller
    */
   public function create()
   {
-    if (isRoleName() !== Constant::DONOR) :
-      abort(403);
-    elseif (me()->registrations->count() >= 1) :
-    # code...
+    if (isRoleName() === Constant::DONOR) :
+      $registration = $this->registrationService->getByUserId();
+      if ($registration->exists()) :
+        $status = $registration->where('status', Constant::REJECTED)->first();
+        if ($status) :
+          return view('registrations.create');
+        else :
+          return back()->with('error', trans('Anda hanya bisa menambahkan kembali data ketika pendaftaran sebelumnya ditolak'));
+        endif;
+      endif;
     else :
-    # code...
+      abort(403, trans('Anda tidak memiliki izin untuk mengakses halaman ini.'));
     endif;
 
     return view('registrations.create');

@@ -35,18 +35,14 @@
         <div class="row justify-content-center">
           <div class="col-md-6">
 
+            <input type="hidden" name="registration_id" value="{{ $schedule->registration_id }}">
+
             <div class="mb-4">
-              <label for="registration_id" class="form-label">{{ trans('Nomor Pendaftaran') }}</label>
-              <select name="registration_id" id="registration_id" class="js-select2 form-select @error('registration_id') is-invalid @enderror">
-                <option></option>
-                @foreach($registrations as $item)
-                  @if(old('registration_id', $schedule->registration_id) == $item->id)
-                    <option value="{{ $item->id }}" selected>{{ $item->number }}</option>
-                  @else
-                    <option value="{{ $item->id }}">{{ $item->number }}</option>
-                  @endif
-                @endforeach
-              </select>
+              <label for="number" class="form-label">{{ trans('Nomor Pendaftaran') }}</label>
+              <input type="text" id="number" class="form-control @error('number') is-invalid @enderror" value="{{ $schedule->registration->number }}" readonly>
+              @error('number')
+              <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
             </div>
 
             <div class="mb-4">
@@ -54,6 +50,14 @@
               <input type="date" name="date" id="date" class="form-control @error('date') is-invalid @enderror" value="{{ old('date', date('Y-m-d', strtotime($schedule->date->toDateString()))) }}">
               @error('date')
               <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
+            </div>
+
+            <div class="mb-4">
+              <label for="time" class="form-label">{{ trans('Jam Pengambilan') }}</label>
+              <input type="time" name="time" id="time" class="form-control @error('time') is-invalid @enderror" value="{{ old('time', $schedule->time) }}">
+              @error('time')
+                <div class="invalid-feedback">{{ $message }}</div>
               @enderror
             </div>
 
@@ -90,3 +94,12 @@
     </div>
   </div>
 @endsection
+@push('javascript')
+  <script>
+    // Can't select before today
+    $(document).ready(function() {
+      var today = new Date().toISOString().split('T')[0];
+      $('#date').attr('min', today);
+    });
+  </script>
+@endpush

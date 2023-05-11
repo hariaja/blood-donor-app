@@ -17,8 +17,8 @@ class DonorSeeder extends Seeder
   public function run(): void
   {
     $user = User::create([
-      'name' => Constant::DONOR,
-      'email' => 'pendonor@gmail.com',
+      'name' => 'Anita Rahayu Sutira',
+      'email' => 'anita@gmail.com',
       'phone' => '+6285798889000',
       'email_verified_at' => now(),
       'password' => bcrypt('password'),

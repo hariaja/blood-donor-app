@@ -119,6 +119,11 @@ return [
         'paths' => [
             resource_path('views/vendor/mail'),
         ],
+        // 'theme' => 'bootstrap',
+        // 'paths' => [
+        //     resource_path('views/vendor/bootstrap'),
+        // ],
+
     ],
 
 ];

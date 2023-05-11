@@ -8,7 +8,7 @@ silahkan hubungi admin atau periksa kembali data yang anda masukkan pada form pe
 
 ALASAN PENOLAKAN : {{ $data['message'] }}
 
-Thanks,<br>
-Palang Merah Indonesia Kota Sukabumi <br>
+Terimakasih, <br>
+{{ config('site.company.name') }} <br>
 {{ Constant::ADMIN }} {{ config('app.name') }}
 </x-mail::message>

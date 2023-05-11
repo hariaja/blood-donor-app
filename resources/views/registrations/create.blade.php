@@ -130,3 +130,12 @@
   </div>
 </div>
 @endsection
+@push('javascript')
+  <script>
+    // Can't select before today
+    $(document).ready(function() {
+      var today = new Date().toISOString().split('T')[0];
+      $('#last_donor').attr('max', today);
+    });
+  </script>
+@endpush

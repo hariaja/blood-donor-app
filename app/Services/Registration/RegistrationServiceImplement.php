@@ -7,12 +7,12 @@ use InvalidArgumentException;
 use App\Helpers\Global\Helper;
 use Illuminate\Support\Carbon;
 use App\Helpers\Global\Constant;
+use App\Helpers\Global\SendMail;
 use App\Mail\Registrations\RegistrationApproved;
 use Illuminate\Support\Facades\DB;
 use LaravelEasyRepository\Service;
 use Illuminate\Support\Facades\Log;
 use App\Repositories\Registration\RegistrationRepository;
-use Illuminate\Support\Facades\Mail;
 
 class RegistrationServiceImplement extends Service implements RegistrationService
 {
@@ -111,11 +111,11 @@ class RegistrationServiceImplement extends Service implements RegistrationServic
       endif;
 
       if ($request->status === Constant::APPROVED) :
-        Helper::sendApprovedEmail($registration, $request);
+        SendMail::sendApprovedEmail($registration, $request);
       endif;
 
       if ($request->status === Constant::REJECTED) :
-        Helper::sendRejectedEmail($registration, $request);
+        SendMail::sendRejectedEmail($registration, $request);
       endif;
 
       $return = $this->mainRepository->update($registration->id, $request->all());

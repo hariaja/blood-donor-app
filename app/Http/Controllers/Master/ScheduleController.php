@@ -48,7 +48,7 @@ class ScheduleController extends Controller
    */
   public function store(ScheduleRequest $request)
   {
-    $this->scheduleService->create($request->all());
+    $this->scheduleService->createWithSendNotification($request);
     return redirect()->route('schedules.index')->withSuccess(trans('session.create'));
   }
 
@@ -60,6 +60,8 @@ class ScheduleController extends Controller
     $schedule->last_donor = Helper::customDate($schedule->registration->last_donor);
     $schedule->return_donor = Helper::customDate($schedule->registration->return_donor);
     $schedule->take_date = Helper::customDate($schedule->date);
+    $schedule->location = config('site.company.name');
+    $schedule->address = config('site.company.address');
 
     return response()->json([
       'schedule' => $schedule
@@ -80,7 +82,7 @@ class ScheduleController extends Controller
    */
   public function update(ScheduleRequest $request, Schedule $schedule)
   {
-    $this->scheduleService->update($schedule->id, $request->all());
+    $this->scheduleService->updateWithSendNotification($schedule, $request);
     return redirect()->route('schedules.index')->withSuccess(trans('session.update'));
   }
 

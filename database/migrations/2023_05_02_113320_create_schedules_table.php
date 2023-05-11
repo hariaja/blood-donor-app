@@ -14,11 +14,9 @@ return new class extends Migration
   {
     Schema::create('schedules', function (Blueprint $table) {
       $table->id();
-      $table->string('uuid')->unique();
+      $table->string('uuid');
       $table->foreignId('registration_id')->constrained('registrations', 'id')->onDelete('cascade');
       $table->date('date');
-      $table->string('location')->default(Constant::LOCATION);
-      $table->string('address')->default(Constant::ADDRESS);
       $table->timestamps();
     });
   }

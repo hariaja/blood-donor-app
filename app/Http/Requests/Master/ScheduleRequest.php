@@ -24,6 +24,7 @@ class ScheduleRequest extends FormRequest
     return [
       'registration_id' => 'required',
       'date' => 'required|date_format:Y-m-d',
+      'time' => 'required'
     ];
   }
 
@@ -37,6 +38,7 @@ class ScheduleRequest extends FormRequest
       'registration_id.required' => ':attribute tidak boleh dikosongkan',
       'date.required' => ':attribute tidak boleh dikosongkan',
       'date.date' => ':attribute harus berupa tanggal',
+      'time.required' => ':attribute tidak boleh dikosongkan',
     ];
   }
 
@@ -48,7 +50,8 @@ class ScheduleRequest extends FormRequest
   {
     return [
       'registration_id' => 'Pendaftaran',
-      'date' => 'Jadwal Pengambilan Darah',
+      'date' => 'Jadwal pengambilan darah',
+      'time' => 'Jam pengambilan darah'
     ];
   }
 }

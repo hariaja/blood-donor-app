@@ -27,7 +27,7 @@
 <script src="{{ asset('assets/dashmix/src/assets/js/plugins/ckeditor/ckeditor.js') }}"></script>
 <script src="{{ asset('assets/dashmix/src/assets/js/pages/be_tables_datatables.min.js') }}"></script>
 <script src="{{ asset('assets/dashmix/src/assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-<script src="{{ asset('assets/dashmix/src/assets/js/pages/be_pages_dashboard_v1.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/dashmix/src/assets/js/pages/be_pages_dashboard_v1.min.js') }}"></script> --}}
 <script>
   Dashmix.helpersOnLoad([
     'jq-select2',

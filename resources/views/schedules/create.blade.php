@@ -52,9 +52,17 @@
           </div>
 
           <div class="mb-4">
-            <label for="date" class="form-label">{{ trans('Tanggal Pengambilan Darah') }}</label>
+            <label for="date" class="form-label">{{ trans('Tanggal Pengambilan') }}</label>
             <input type="date" name="date" id="date" class="form-control @error('date') is-invalid @enderror" value="{{ old('date') }}">
             @error('date')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+          </div>
+          
+          <div class="mb-4">
+            <label for="time" class="form-label">{{ trans('Jam Pengambilan') }}</label>
+            <input type="time" name="time" id="time" class="form-control @error('time') is-invalid @enderror" value="{{ old('time') }}">
+            @error('time')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror
           </div>
@@ -73,3 +81,12 @@
   </div>
 </div>
 @endsection
+@push('javascript')
+  <script>
+    // Can't select before today
+    $(document).ready(function() {
+      var today = new Date().toISOString().split('T')[0];
+      $('#date').attr('min', today);
+    });
+  </script>
+@endpush

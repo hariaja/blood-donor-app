@@ -41,6 +41,8 @@ class Constant
 
   // Const
   public const LOCATION = 'Palang Merah Indonesia Kota Sukabumi';
+  public const LOGO = 'assets/images/blood.png';
+  public const COMPANY_PHONE = '(0266) 226551';
   public const ADDRESS = 'Jl. Arif Rahman Hakim No. 51 Benteng, Kec. Warudoyong, Kota Sukabumi, Jawa Barat 43132';
 
   public const HAVE_ARRIVED = 'Sudah Datang';

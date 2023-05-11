@@ -21,8 +21,7 @@ class Schedule extends Model
   protected $fillable = [
     'registration_id',
     'date',
-    'location',
-    'address',
+    'time',
     'status',
   ];
 

@@ -13,7 +13,7 @@ return new class extends Migration
   public function up(): void
   {
     Schema::table('schedules', function (Blueprint $table) {
-      $table->string('status')->default(Constant::NOT_YET_COME)->after('address');
+      $table->time('time')->after('date');
     });
   }
 
@@ -23,7 +23,7 @@ return new class extends Migration
   public function down(): void
   {
     Schema::table('schedules', function (Blueprint $table) {
-      $table->dropColumn('status');
+      $table->dropColumn('time');
     });
   }
 };

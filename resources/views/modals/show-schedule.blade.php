@@ -40,12 +40,16 @@
           <div class="mb-4">
             <ul class="list-group push">
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{ trans('Lokasi') }}
-                <span class="fw-semibold" id="location"></span>
+                {{ trans('Tanggal') }}
+                <span class="fw-semibold" id="take-date"></span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{ trans('Tanggal Pengambilan Darah') }}
-                <span class="fw-semibold" id="take-date"></span>
+                {{ trans('Jam') }}
+                <span class="fw-semibold" id="take-time"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ trans('Lokasi') }}
+                <span class="fw-semibold" id="location"></span>
               </li>
               <li class="list-group-item text-center">
                 {{ trans('Alamat Lengkap') }}

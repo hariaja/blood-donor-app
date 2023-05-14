@@ -76,6 +76,7 @@
           $('#modal-show-schdule #location').text(response.schedule.location)
           $('#modal-show-schdule #address').text(response.schedule.address)
           $('#modal-show-schdule #take-date').text(response.schedule.take_date)
+          $('#modal-show-schdule #status').text(response.schedule.status)
           $('#modal-show-schdule #take-time').text(response.schedule.time.substring(0, 5) + ' WIB')
         })
     }

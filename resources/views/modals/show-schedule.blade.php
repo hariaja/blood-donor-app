@@ -51,6 +51,15 @@
                 {{ trans('Lokasi') }}
                 <span class="fw-semibold" id="location"></span>
               </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ trans('Status Kedatangan') }}
+                <span class="fw-semibold" id="status"></span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mb-4">
+            <ul class="list-group push">
               <li class="list-group-item text-center">
                 {{ trans('Alamat Lengkap') }}
               </li>

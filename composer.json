@@ -41,6 +41,7 @@
       "app/Helpers/Global/Dashboard.php",
       "app/Helpers/Global/Constant.php",
       "app/Helpers/Global/SendMail.php",
+      "app/Helpers/Api/Response.php",
       "app/Helpers/Auth/Authenticated.php"
     ]
   },

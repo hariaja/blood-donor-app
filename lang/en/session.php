@@ -15,4 +15,9 @@ return [
     'active' => 'Aktif',
     'inactive' => 'Tidak Aktif',
   ],
+
+  'api' => [
+    'logout' => 'Anda berhasil keluar dari aplikasi',
+    'invalid' => 'Data yang anda masukkan tidak sesuai dengan kredensial kami',
+  ],
 ];

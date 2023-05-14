@@ -60,4 +60,10 @@ php artisan serve
 php artisan storage:link
 ```
 
+- Untuk service authentication menggunakan Laravel Passport, untuk menjalankannya. Jalankan perintah berikut
+
+```
+php artisan passport:install --force
+```
+
 - LARAVEL DOCUMENTATION: https://laravel.com/docs/10.x

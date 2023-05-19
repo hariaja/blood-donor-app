@@ -46,5 +46,6 @@ Route::prefix('users')->group(function () {
     // Registration
     Route::get('registrations/index', [RegistrationController::class, 'index']);
     Route::post('registrations/store', [RegistrationController::class, 'store']);
+    Route::get('registrations/{registration}/show', [RegistrationController::class, 'show']);
   });
 });

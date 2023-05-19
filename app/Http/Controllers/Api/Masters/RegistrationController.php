@@ -6,6 +6,7 @@ use App\Helpers\Api\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Master\RegistrationRequest;
+use App\Models\Registration;
 use App\Services\Registration\RegistrationService;
 use Exception;
 
@@ -37,6 +38,17 @@ class RegistrationController extends Controller
     try {
       $this->registrationService->handleNewRegistration($request);
       return Response::success(trans('session.create'), false);
+    } catch (Exception $e) {
+      return Response::error('Error:' . $e, true, 400);
+    }
+  }
+
+  public function show(Registration $registration)
+  {
+    try {
+      return response()->json([
+        'detail' => $registration,
+      ]);
     } catch (Exception $e) {
       return Response::error('Error:' . $e, true, 400);
     }

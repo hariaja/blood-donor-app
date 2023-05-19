@@ -44,15 +44,6 @@ class User extends Authenticatable implements MustVerifyEmail
   ];
 
   /**
-   * The relationships that should always be loaded.
-   *
-   * @var array
-   */
-  // protected $with = [
-  //   'donor',
-  // ];
-
-  /**
    * The attributes that should be cast.
    *
    * @var array<string, string>
@@ -80,6 +71,20 @@ class User extends Authenticatable implements MustVerifyEmail
     } else {
       return Storage::url($this->avatar);
     }
+  }
+
+  /**
+   * Check user have avatar or not.
+   *
+   * @return void
+   */
+  public function hasAvatar()
+  {
+    if ($this->avatar != null) {
+      return true;
+    }
+
+    return false;
   }
 
   /**

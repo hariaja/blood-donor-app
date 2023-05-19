@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\Auth;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Helpers\Api\Response;
+use App\Helpers\Global\Helper;
+use App\Helpers\Global\Constant;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\Client as OClient;
@@ -25,7 +27,7 @@ class LoginController extends Controller
   {
     $request->validate([
       'email' => 'required|string',
-      'password' => 'required|string'
+      'password' => 'required|string',
     ]);
 
     $credentials = request(['email', 'password']);
@@ -36,14 +38,30 @@ class LoginController extends Controller
 
     $user = $request->user();
 
+    if ($user->status == Constant::INACTIVE) {
+      return Response::error(trans('session.api.inactive'), true, 400);
+    }
+
+    if ($user->isRoleName() !== Constant::DONOR) {
+      return Response::error(trans('session.api.not_donor'), true, 400);
+    }
+
     $oClient = OClient::where('password_client', 1)->first();
     $tokens = $this->getTokens($oClient, request('email'), request('password'));
+
+    $date = $user->donor->birth_date;
+    $convertDate = date('Y-m-d', strtotime($date));
+
+    $user->has_avatar = $user->hasAvatar();
+    $user->avatar_url = $user->getAvatar();
+    $user->birth_date = Helper::customDate($convertDate);
+    $user->donor = $user->donor;
 
     $user->access_token = $tokens->getData()->access_token;
     $user->refresh_token = $tokens->getData()->refresh_token;
 
     return response()->json([
-      'user' => $user
+      'user' => $user,
     ], 200);
   }
 

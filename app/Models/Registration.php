@@ -134,4 +134,21 @@ class Registration extends Model
   {
     return $this->hasOne(Schedule::class, 'registration_id');
   }
+
+  /**
+   * Global scope for filter registrations.
+   *
+   * @param  mixed $query
+   * @param  mixed $filters
+   * @return void
+   */
+  public function scopeFilter($query, array $filters)
+  {
+    $query->when($filters['search'] ?? false, function ($query, $search) {
+      return $query->where(function ($query) use ($search) {
+        $query->where('number', 'like', '%' . $search . '%')
+          ->orWhere('status', 'like', '%' . $search . '%');
+      });
+    });
+  }
 }

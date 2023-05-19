@@ -19,5 +19,7 @@ return [
   'api' => [
     'logout' => 'Anda berhasil keluar dari aplikasi',
     'invalid' => 'Data yang anda masukkan tidak sesuai dengan kredensial kami',
+    'inactive' => 'Akun anda belum aktif. Silahkan hubungi admin untuk mengaktifkan akun anda',
+    'not_donor' => 'Anda bukan pendonor silahkan masuk melalui aplikasi website',
   ],
 ];
